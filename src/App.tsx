@@ -1,12 +1,11 @@
 import React from "react";
-import { Provider } from "./Provider";
-import Counter from "./Counter";
+import Modal from "./Modal";
 
 const App: React.FC = () => {
     return (
-        <Provider>
-            <Counter />
-        </Provider>
+        <div className="App">
+            <Modal />
+        </div>
     );
 };
 
