@@ -1,5 +1,5 @@
 import React from "react";
-import { ResultProps } from "./types/StateContext";
+import { ResultProps } from "../types/StateContext";
 
 const Result: React.FC<ResultProps> = ({ countRightAnswer, questions }) => {
     return (

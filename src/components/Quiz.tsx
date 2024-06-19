@@ -1,5 +1,5 @@
 import React from "react";
-import { QuizProps } from "./types/StateContext";
+import { QuizProps } from "../types/StateContext";
 
 const Quiz: React.FC<QuizProps> = ({
     currentQuestion,
