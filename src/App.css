@@ -1,0 +1,36 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(105, 105, 105, 0.358);
+}
+
+.counter {
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    h1 {
+        font-size: 10vh;
+    }
+    h2 {
+        font-size: 5vh;
+    }
+}
+
+.btn {
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 15em;
+    font: inherit;
+}
+.btn:hover {
+    cursor: pointer;
+}
+.btn__minus {
+    background-color: rgba(235, 35, 35, 0.744);
+}
+.btn__plus {
+    background-color: rgba(15, 152, 15, 0.788);
+}
