@@ -1,44 +1,51 @@
-import React, { useContext } from "react";
-import Quiz from "./components/Quiz";
-import Result from "./components/Result";
-
-import "./styles/Quiz.css";
-
-import { Provider, Question } from "./types/StateContext";
-import { Context } from "./types/StateContext";
+import React from "react";
+import { Skeleton } from "./components/Users/Skeleton";
+import { Users } from "./components/Users/";
+import { Success } from "./components/Success";
+import { useUsers } from "./hooks/useUsers";
+import "./styles/Users.css";
 
 const App: React.FC = () => {
-    const [step, setStep] = React.useState<number>(0);
-    const [countRightAnswer, setCountRightAnswer] = React.useState<number>(0);
-    const { questions } = useContext(Context);
+    const [searchValue, setSearchValue] = React.useState("");
+    const [invites, setInvites] = React.useState<number[]>([]);
+    const [succes, setSucces] = React.useState(false);
+    const { data } = useUsers();
 
-    const currentQuestion: Question = questions[step];
+    const onChangeSearchValue = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ): void => {
+        setSearchValue(event.target.value);
+    };
 
-    const onClickVariant = (index: number): void => {
-        setStep((prev) => prev + 1);
-        if (index === currentQuestion.correct) {
-            setCountRightAnswer((prev) => prev + 1);
+    const onClickInvite = (id: number): void => {
+        if (invites.includes(id)) {
+            setInvites((prev) => prev.filter((_id) => _id !== id));
+        } else {
+            setInvites((prev) => [...prev, id]);
         }
     };
 
+    const onClickSendInvites = () => {
+        setSucces(true);
+    };
+
     return (
-        <Provider>
-            <div className="App">
-                {step !== questions.length ? (
-                    <Quiz
-                        currentQuestion={currentQuestion}
-                        onClickVariant={onClickVariant}
-                        step={step}
-                        questions={questions}
-                    />
-                ) : (
-                    <Result
-                        countRightAnswer={countRightAnswer}
-                        questions={questions}
-                    />
-                )}
-            </div>
-        </Provider>
+        <div className="App">
+            {succes ? (
+                <Success count={invites.length} />
+            ) : data ? (
+                <Users
+                    itemsUsers={data.data}
+                    searchValue={searchValue}
+                    onChangeSearchValue={onChangeSearchValue}
+                    invites={invites}
+                    onClickInvite={onClickInvite}
+                    onClickSendInvites={onClickSendInvites}
+                />
+            ) : (
+                <Skeleton />
+            )}
+        </div>
     );
 };
 
