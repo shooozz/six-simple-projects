@@ -19,15 +19,6 @@ export interface UsersResponse {
     };
 }
 
-export interface UserListProps {
-    itemsUsers: User[];
-    searchValue: string;
-    onChangeSearchValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    invites: number[];
-    onClickInvite: (id: number) => void;
-    onClickSendInvites: () => void;
-}
-
 export interface FullUserProps {
     id: number;
     email: string;
@@ -39,5 +30,5 @@ export interface FullUserProps {
 }
 
 export interface SuccessProps {
-    count: number;
+    countInviteUsers: number;
 }
